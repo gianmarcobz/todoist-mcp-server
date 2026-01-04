@@ -9,5 +9,5 @@ ENV TODOIST_API_TOKEN=""
 
 EXPOSE 8080
 
-# Use Streamable HTTP transport instead of SSE
-CMD ["sh", "-c", "supergateway --stdio 'mcp-todoist' --port $PORT --outputTransport streamableHttp --healthEndpoint /health"]
+# Use Streamable HTTP transport with /message path for Claude Code compatibility
+CMD ["sh", "-c", "supergateway --stdio 'mcp-todoist' --port $PORT --outputTransport streamableHttp --streamableHttpPath /message --healthEndpoint /health"]
