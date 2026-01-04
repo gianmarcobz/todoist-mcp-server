@@ -2,12 +2,13 @@ FROM node:20-slim
 
 WORKDIR /app
 
-# Installa supergateway e il server MCP Todoist
-RUN npm install -g supergateway @abhiz123/todoist-mcp-server
+# Install supergateway
+RUN npm install -g supergateway
 
 ENV PORT=8080
 ENV TODOIST_API_TOKEN=""
 
 EXPOSE 8080
 
-CMD ["sh", "-c", "supergateway --stdio 'todoist-mcp-server' --port $PORT"]
+# Pass env vars explicitly to npx command
+CMD ["sh", "-c", "TODOIST_API_TOKEN=${TODOIST_API_TOKEN} supergateway --stdio 'npx -y @abhiz123/todoist-mcp-server' --port $PORT"]
