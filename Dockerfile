@@ -10,5 +10,5 @@ ENV TODOIST_API_TOKEN=""
 
 EXPOSE 8080
 
-# Use todoist-mcp package (more recent and maintained)
-CMD ["sh", "-c", "supergateway --stdio 'npx -y todoist-mcp' --port $PORT"]
+# Use original package with explicit env export
+CMD ["sh", "-c", "export TODOIST_API_TOKEN && supergateway --stdio 'npx -y @abhiz123/todoist-mcp-server' --port $PORT"]
