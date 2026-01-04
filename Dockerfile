@@ -9,5 +9,5 @@ ENV TODOIST_API_TOKEN=""
 
 EXPOSE 8080
 
-# Use installed package directly instead of npx
-CMD ["sh", "-c", "supergateway --stdio 'mcp-todoist' --port $PORT --healthEndpoint /health"]
+# Use Streamable HTTP transport instead of SSE
+CMD ["sh", "-c", "supergateway --stdio 'mcp-todoist' --port $PORT --outputTransport streamableHttp --healthEndpoint /health"]
