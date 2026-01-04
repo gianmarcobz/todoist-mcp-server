@@ -1,7 +1,13 @@
 FROM node:20-slim
 WORKDIR /app
-RUN npm install -g supergateway
+
+# Install packages globally
+RUN npm install -g supergateway @greirson/mcp-todoist
+
 ENV PORT=8080
 ENV TODOIST_API_TOKEN=""
+
 EXPOSE 8080
-CMD ["sh", "-c", "supergateway --stdio 'npx -y @greirson/mcp-todoist' --port $PORT"]
+
+# Use installed package directly instead of npx
+CMD ["sh", "-c", "supergateway --stdio 'mcp-todoist' --port $PORT --healthEndpoint /health"]
